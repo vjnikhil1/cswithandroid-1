@@ -61,6 +61,10 @@ public class AnagramDictionary {
     }
 
     public String pickGoodStarterWord() {
-        
+        int i = random.nextInt((wordList.size()+1));
+        while(getAnagramsWithOneMoreLetter(wordList.get(i)).size()<=MIN_NUM_ANAGRAMS){
+            i = random.nextInt((wordList.size()+1));
+        }
+        return wordList.get(i);
     }
 }
