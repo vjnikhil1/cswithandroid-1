@@ -1,5 +1,7 @@
 package com.google.engedu.anagrams;
 
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -49,21 +51,23 @@ public class AnagramDictionary {
 
     public ArrayList<String> getAnagramsWithOneMoreLetter(String word) {
         ArrayList<String> result = new ArrayList<>();
-        for(int i='a';i<='z';i++){
-            char[] chars = word.toCharArray();
+        for(char i='a';i<='z';i++){
+            String temp = word + i;
+            char[] chars = temp.toCharArray();
             Arrays.sort(chars);
             String nw = new String(chars);
+            //Log.d("mauka", "defaultAction: " + nw);
             if (lettersToWord.get(nw) != null) {
-                lettersToWord.get(nw).addAll(result);
+                result.addAll(lettersToWord.get(nw));
             }
         }
         return result;
     }
 
     public String pickGoodStarterWord() {
-        int i = random.nextInt((wordList.size()+1));
+        int i = random.nextInt((wordList.size()));
         while(getAnagramsWithOneMoreLetter(wordList.get(i)).size()<=MIN_NUM_ANAGRAMS){
-            i = random.nextInt((wordList.size()+1));
+            i = random.nextInt((wordList.size()));
         }
         return wordList.get(i);
     }

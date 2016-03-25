@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -126,6 +127,7 @@ public class AnagramsActivity extends AppCompatActivity {
             fab.setImageResource(android.R.drawable.ic_media_play);
             currentWord = null;
             resultView.append(TextUtils.join("\n", anagrams));
+
             gameStatus.append(" Hit 'Play' to start again");
         }
         return true;
